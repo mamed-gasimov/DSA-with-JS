@@ -43,7 +43,39 @@ class LinkedList {
     this.length++;
   }
 
-  reverseBetween() {}
+  // reverseBetween(m, n) that reverses the nodes between indexes
+  // (using 0-based indexing)  m and n (inclusive) in the linked list.
+  reverseBetween(m, n) {
+    // If the list is empty, do nothing
+    if (!this.head) return;
+
+    // Create a dummy node and set its next to head
+    const dummy = new Node(0);
+    dummy.next = this.head;
+    let prev = dummy;
+
+    // Move prev to mth node
+    for (let i = 0; i < m; i++) {
+      prev = prev.next;
+    }
+
+    // Set current as the mth node
+    let current = prev.next;
+    // Reverse the sublist from m to n
+    for (let i = 0; i < n - m; i++) {
+      // Save the next node of current
+      const temp = current.next;
+      // Update current's next to skip temp
+      current.next = temp.next;
+      // Move temp after prev
+      temp.next = prev.next;
+      // Update prev's next to temp
+      prev.next = temp;
+    }
+
+    // Update head of the list
+    this.head = dummy.next;
+  }
 }
 
 let myLinkedList = new LinkedList(1);
