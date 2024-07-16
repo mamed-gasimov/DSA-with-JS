@@ -22,3 +22,31 @@ console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
 // [["bat"],["nat","tan"],["ate","eat","tea"]]
 console.log(groupAnagrams([""])); // [[""]]
 console.log(groupAnagrams(["a"])); // [["a"]]
+
+const groupAnagramsSecondSolution = (strs) => {
+  const obj = {};
+
+  for (const str of strs) {
+    const arr = Array(26).fill(0);
+    for (let i = 0; i < str.length; i++) {
+      const ascii = str.charCodeAt(i);
+      arr[ascii - 97] += 1;
+    }
+    const key = arr.join("-");
+
+    if (obj[key]) {
+      obj[key].push(str);
+    } else {
+      obj[key] = [str];
+    }
+  }
+
+  return Object.values(obj);
+};
+
+console.log("-----------------------");
+console.log(
+  groupAnagramsSecondSolution(["eat", "tea", "tan", "ate", "nat", "bat"])
+); // [["bat"],["nat","tan"],["ate","eat","tea"]]
+console.log(groupAnagramsSecondSolution([""])); // [[""]]
+console.log(groupAnagramsSecondSolution(["a"])); // [["a"]]
