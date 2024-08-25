@@ -1,8 +1,4 @@
 class Node {
-  val;
-  prev;
-  next;
-
   constructor(value) {
     this.val = value;
     this.prev = null;
@@ -11,9 +7,6 @@ class Node {
 }
 
 class MyLinkedList {
-  left;
-  right;
-
   constructor() {
     this.left = new Node(0);
     this.right = new Node(0);
